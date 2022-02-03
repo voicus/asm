@@ -22,7 +22,7 @@ have a variable length, while in RISC all instructions have exactly the same len
 representation in bits) For example, if we take a RISC processor on 32 bits, in this all
 the operations have a binary code - car code, on 32 bits. In CISC class things are completely
 different - operations have variable length, and then it is relatively more difficult to park.
-We will set an example. Let's consider add surgery. In the RISC class, the implementation of the add is
+We will set an example. Let's consider add operation. In the RISC class, the implementation of the add is
 simpler, as it has three operands - destination, source 1 and source 2. We can write, so add %7,
 %8, %11, where 7, 8, 11 are the registries of this processor (the registries are identified or by a name
 symbolic, or by an associated number).
@@ -115,7 +115,7 @@ Thus, a complete coding on 12 bits 1 01 0 01111000 means that the current operan
 is the x variable. If we had the same representation in the operation, but with another code
 identifier, for example 00, 1 00 0 01111000, would have been the whole number 120, and if
 i had the 1, 1 00 1 01111000 mark bit, it would have been the whole number -120.
-It's just about to code the surgeries. They will follow a similar structure - an initial bit 1, a
+It's just about to code the operations. They will follow a similar structure - an initial bit 1, a
 identifier, and an operating code applied up to 12 bits:
 We have the following codes:
 Coding Operation
@@ -129,7 +129,7 @@ For clarity, we present the identifiers in the following table:
 Meaning Identifier
 00 full number
 01 variable
-10 surgery
+10 operation
 2.5 An example of translation
 Let's consider that we want to represent the instruction x 1 let x -14 div.
 We will use the formats described above, and we will represent each field in turn.
@@ -138,7 +138,7 @@ four digits each, so x's representation is 1010 0111 1000.
 2. We're coding it on one. It's a positive integer operand coding, so we have the identifier
 00 and the sign bit 0. His representation will be 1 00 0 00000001, and on the grouping 4 digits
 1000 000 001.
-3 let is a surgery, it will be encoded as a surgery, so having the identifier 10, respectively
+3 let is a operation, it will be encoded as an operation, so having the identifier 10, respectively
 The code of operation 000000000. His representation will be 1 10 000000000, and on the grouping 4
 figure 1100 0000 000.
 4 x will be represented again as 1010 0111 1000.
@@ -157,38 +157,38 @@ We have, therefore, that the operation in our assembly, x 1 let x -14 div, trans
 hexa representation car in A7 88 01 C0 0A 78 90 EC 04.
 3 Topic
 In solving the requirements, the variables used are only the small letters of the English alphabet.
-3.1 Black 1
+3.1 requirement 1
 Requirement 1 will be evaluated on 4 tests and will help you get a score of 4p from grade 10.
 Be given as input a sir hexa, it is required to display the instruction assembly of
 executed.
 For example, for the A78801C00A7890EC04 input, the output x 1 let x will be displayed
 14 div.
-3.2 Intent 2
+3.2 requirement 2
 Requirement 2 will be evaluated on 4 tests and will help you get a score of 2p from grade 10.
 Either given as input an instruction in the assembly language of the considered arithmetic processor, it
 requires to display the standard output the instruction evaluation. For this requirement, in the instruction
 there are no variables, it being formed only from integer numbers and operations.
-For example, it can be given instruction 2 10 mul 5 div 7 6 under add. The result must
+For example, it can be given instruction 2 10 mul 5 div 7 6 sub add. The result must
 either according to the following algorithm:
 · add 2 on the stack;
 · add 10 on the stack;
-· identify the surgery, multiply between 2 and 10, get 20, remove 2 and 10
+· identify the operation, multiply between 2 and 10, get 20, remove 2 and 10
 on the stack and only 20 is kept;
 · add 5 on the stack;
 · identify div - acts as 20 div 5, and the result is 4; remove 20 and 5 from the stack,
 and it keeps only 4;
 · add 7 on the stack;
 · add 6 on the stack;
-· identify under - calculate the difference between 7 and 6, get 1, remove 7 and 6 from the stack,
+· identify sub - calculate the difference between 7 and 6, get 1, remove 7 and 6 from the stack,
 and add to the stack value 1. Attention! at this point, on the stack we have 4 (at base) and 1 in
-peak, because under is binary surgery and worked only with arguments 7 and 6, but not with 4
+peak, because sub is binary operation and worked only with arguments 7 and 6, but not with 4
 which was already at the base of the stack.
 · identify add - calculate the sum of 1 and 4, get 5, remove 1 and 4 on the stack, se
 add 5;
 · I have finished the track and the result obtained is, now, located on the top of the stack. The result of this calculation is 5.
 A suggestion to implement the algorithm is found at the end of this document. Important! Se
 request the evaluation only on unsigned! It guarantees that all operations will be on unsigned.
-3.3 Cerinta 3
+3.3 requirement 3
 Requirement 3 will be evaluated on 3 tests and will help you get 1.5p of grade 10.
 Be given as input an instruction in the assembly language of the considered arithmetic processor. Se
 requires to display the standard output the instruction evaluation. For this requirement, unlike
@@ -208,7 +208,7 @@ arithmetic; are removed y and 3 on the stack;
 add 12;
 · there are no more elements, so the final result is 12.
 Exactly as in the second requirement, it is guaranteed that all operations will be applied on unsigned.
-3.4 Intint 4
+3.4 requirement 4
 Requirement 4 will be evaluated on 5 tests and will help you get 1.5p of grade 10.
 For this requirement, we introduce simple matrix work operations. An array can be
 represented in shape
@@ -229,7 +229,7 @@ Apply a -2 addition to all matrix elements:
 -1 0 1
 2 3 4
 As output, the standard output will display the representation of this matrix in the form it is introduced
-in surgery: number of lines, number of columns and matrix elements, from left to left
+in: number of lines, number of columns and matrix elements, from left to left
 right and top down. In this case, the outpuut will be 2 3 -1 0 1 2 3 4.
 If we have the following instruction: x 2 3 -1 0 1 2 3 4 let rot90d, then apply the following rotation to the right 90 degrees:
 2-1
