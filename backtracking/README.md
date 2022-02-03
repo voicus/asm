@@ -1,0 +1,1 @@
+With n, m and 3*n numbers being read, print the smallest lexicographically possible permutation of {1,…,n} where each element appears exactly 3 times, with a distance of at least m elements between any two elements of equal value, starting from a few already specified “fixed points”.
